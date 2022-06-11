@@ -3,7 +3,9 @@ import {Todo} from "./models/todo.model";
 import { createTodo } from "./todo.actions";
 
 
-export const initialState: Todo[] = [];
+export const initialState: Todo[] = [
+  new Todo('Save to world')
+];
 
 const _todoReducer = createReducer( 
   initialState,
