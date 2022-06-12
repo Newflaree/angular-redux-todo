@@ -15,8 +15,8 @@ import { Todo } from '../models/todo.model';
   styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todo: Todo;
-  @ViewChild( 'physicalInput' ) txtPhysicalInput: ElementRef;
+  @Input() todo: Todo = new Todo('');
+  @ViewChild( 'physicalInput' ) txtPhysicalInput: ElementRef = new ElementRef('');;
   public chkCompleted: FormControl;
   public txtInput: FormControl;
   public editing: boolean = false;
@@ -24,8 +24,6 @@ export class TodoItemComponent implements OnInit {
   constructor(
     private store: Store<AppState>
   ) { 
-    this.todo = new Todo('');
-    this.txtPhysicalInput = new ElementRef('');
     this.txtInput = new FormControl( this.todo.text, Validators.required );
     this.chkCompleted = new FormControl( this.todo.completed );
   }
@@ -38,6 +36,7 @@ export class TodoItemComponent implements OnInit {
 
   editTodo() {
     this.editing = true;
+    this.txtInput.setValue( this.todo.text );
 
     setTimeout(() => {
       this.txtPhysicalInput.nativeElement.select();
@@ -46,5 +45,18 @@ export class TodoItemComponent implements OnInit {
 
   finishEdit() {
     this.editing = false;
+
+    if ( this.txtInput.invalid ) {
+      return;
+    }
+
+    if ( this.txtInput.value === this.todo.text ) {
+      return;
+    }
+
+    this.store.dispatch( actions.editTodo({
+      id: this.todo.id,
+      text: this.txtInput.value
+    }))
   }
 }
