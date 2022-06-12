@@ -1,5 +1,11 @@
 // Angular
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 // NgRx
 import { Store} from '@ngrx/store';
