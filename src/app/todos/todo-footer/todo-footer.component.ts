@@ -22,13 +22,9 @@ export class TodoFooterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    /*
-    this.store.select( 'filter' )
-      .subscribe( filter => this.currentFilter = filter );
-     * */
-    this.store.subscribe( state => {
-      this.currentFilter = state.filter;
-      this.pending = state.todos.filter( todo => !todo.completed  ).length;
+    this.store.subscribe( ({ filter, todos }) => {
+      this.currentFilter = filter;
+      this.pending = todos.filter( todo => !todo.completed  ).length;
     })
   }
 
