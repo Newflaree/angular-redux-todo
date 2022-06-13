@@ -6,4 +6,3 @@ export const filterTodos = createAction(
   '[Filter] Set Filter',
   props<{ filter: allowedFilters }>()
 );
-
