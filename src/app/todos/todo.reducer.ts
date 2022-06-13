@@ -56,6 +56,6 @@ const _todoReducer = createReducer(
   }),
 );
 
-export function todoReducer( state: Todo[], action: Action ): any {
+export function todoReducer( state?: Todo[], action?: any ): any {
   return _todoReducer( state, action );
 }
