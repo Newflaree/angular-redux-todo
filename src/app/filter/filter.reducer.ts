@@ -5,7 +5,7 @@ export const initialState: allowedFilters = 'all';
 
 const _filterReducer = createReducer(
   initialState,
-  on( filterTodos, ( state, { filter }: any ) => state )
+  on( filterTodos, ( state, { filter }: any ) => filter )
 );
 
 export function filterReducer( state: any, action: Action ) {
